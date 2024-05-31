@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vys-api-service
+spec:
+  selector:
+    app: vys-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

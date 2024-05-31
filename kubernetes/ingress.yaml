@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vys-api-server-http-ingress
+  namespace: default
+  annotations:
+    haproxy.org/server-ssl: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vys-api-service
+                port:
+                  number: 80
+      host: vys-api.gazi.edu.tr
+  tls:
+    - hosts:
+        - vys-api.gazi.edu.tr
+      secretName: tls-secret
